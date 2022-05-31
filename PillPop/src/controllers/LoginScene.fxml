@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane fx:id="paneBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+   <center>
+      <AnchorPane prefHeight="80.0" prefWidth="216.0" style="-fx-background-color: #52C5F2;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonLogin" layoutX="94.0" layoutY="129.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #0583F2;" text="Login">
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" />
+               </effect>
+            </Button>
+            <PasswordField layoutX="46.0" layoutY="81.0" />
+            <TextField layoutX="46.0" layoutY="43.0" />
+            <Label alignment="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="17.0" prefWidth="238.0" text="Minute Checker">
+               <font>
+                  <Font name="Century" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="9.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/userIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="37.0" layoutX="9.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/passwordIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="38.0" layoutX="35.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/images/Stethoscope.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <AnchorPane prefHeight="156.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="574.0" layoutY="14.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: transparent;" text="Sign Up" textFill="#008deb" />
+            <Button layoutX="430.0" layoutY="14.0" mnemonicParsing="false" onAction="#signUp" style="-fx-background-color: transparent;" text="Don't have an account ?" />
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <AnchorPane prefHeight="137.0" prefWidth="640.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

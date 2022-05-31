@@ -1,0 +1,10 @@
+#paneBackground {
+	-fx-background-image:
+		url("file:///C:/Users/boanc/antique-workspace/PillPop/resources/images/backgroundlogin.jpg");
+	-fx-background-size: 100% 100%;
+}
+
+.button {
+	-fx-background-color: transparent;
+    -fx-skin: 'controllers.ScaleSkin';
+}
