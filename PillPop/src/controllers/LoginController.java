@@ -26,6 +26,7 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void login(ActionEvent event) {
+		
 		FadeTransition ft = new FadeTransition();
 		ft.setNode(paneBackground);
 		ft.setDuration(Duration.millis(1000));
@@ -35,12 +36,21 @@ public class LoginController implements Initializable {
 			System.out.println(1);
 			SceneController.changeScene("/controllers/CheckingScene.fxml");
 		});
-		ft.play();
+		ft.play(); 
 		System.out.println("Logging in..");
 	}
 
 	@FXML
 	private void signUp(ActionEvent event) {
-		System.out.println("Signing up..");
+		FadeTransition ft = new FadeTransition();
+		ft.setNode(paneBackground);
+		ft.setDuration(Duration.millis(1000));
+		ft.setFromValue(1);
+		ft.setToValue(0);
+		ft.setOnFinished((ActionEvent eventt) -> {
+			System.out.println(1);
+			SceneController.changeScene("/controllers/SignUpScene.fxml");
+		});
+		ft.play();
 	}
 }
