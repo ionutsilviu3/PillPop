@@ -12,7 +12,7 @@
    <bottom>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonCorrect" layoutX="91.0" layoutY="101.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="97.0" text="5">
+            <Button fx:id="buttonCorrect" layoutX="91.0" layoutY="101.0" mnemonicParsing="false" onAction="#correctAnswer" prefHeight="52.0" prefWidth="97.0" text="5">
                <font>
                   <Font size="20.0" />
                </font>
@@ -20,7 +20,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="buttonWrong" layoutX="421.0" layoutY="101.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="97.0" text="2">
+            <Button fx:id="buttonWrong" layoutX="421.0" layoutY="101.0" mnemonicParsing="false" onAction="#wrongAnswer" prefHeight="52.0" prefWidth="97.0" text="2">
                <font>
                   <Font size="20.0" />
                </font>
@@ -37,9 +37,9 @@
       </AnchorPane>
    </bottom>
    <center>
-      <ImageView fx:id="imageEye" fitHeight="148.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+      <ImageView fx:id="imageIshihara" fitHeight="148.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../resources/images/5.png" />
+            <Image url="@../resources/images/5_2.png" />
          </image>
       </ImageView>
    </center>

@@ -1,5 +1,5 @@
 #paneBackground {
-	-fx-background-image: url("file:///C:/Users/boanc/git/PillPop/PillPop/resources/images/backgroundlogin.jpg");
+	-fx-background-image: url("/resources/images/backgroundlogin.jpg");
 	-fx-background-size: 100% 100%;
 }
 
