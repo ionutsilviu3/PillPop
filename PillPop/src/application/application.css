@@ -1,10 +1,19 @@
 #paneBackground {
-	-fx-background-image:
-		url("file:///C:/Users/boanc/antique-workspace/PillPop/resources/images/backgroundlogin.jpg");
+	-fx-background-image: url("file:///C:/Users/boanc/git/PillPop/PillPop/resources/images/backgroundlogin.jpg");
 	-fx-background-size: 100% 100%;
 }
 
 .button {
 	-fx-background-color: transparent;
-    -fx-skin: 'controllers.ScaleSkin';
+	-fx-skin: 'controllers.ScaleSkin';
+}
+
+#buttonCorrect{
+	-fx-background-color: #008deb;
+	-fx-skin: 'controllers.ScaleSkin';
+}
+
+#buttonWrong{
+	-fx-background-color:  #008deb;
+	-fx-skin: 'controllers.ScaleSkin';
 }

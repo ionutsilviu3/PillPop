@@ -15,6 +15,7 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private Button buttonLogin, buttonSignUp;
+	
 	@FXML
 	private BorderPane paneBackground;
 
@@ -34,9 +35,9 @@ public class LoginController implements Initializable {
 		ft.setToValue(0);
 		ft.setOnFinished((ActionEvent eventt) -> {
 			System.out.println(1);
-			SceneController.changeScene("/controllers/CheckingScene.fxml");
+			SceneController.changeScene("/controllers/SymptomCheckScene.fxml");
 		});
-		ft.play(); 
+		ft.play();
 		System.out.println("Logging in..");
 	}
 

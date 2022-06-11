@@ -6,13 +6,13 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.animation.ScaleTransition;
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
@@ -24,6 +24,8 @@ public class CheckingController implements Initializable {
 	private Label knowPhaseLabel;
 	@FXML
 	private Button buttonMan, buttonChild, buttonWoman;
+	@FXML
+	private Pane backgroundPane;
 	
 	public char gender;
 
@@ -52,6 +54,7 @@ public class CheckingController implements Initializable {
 		buttonWoman.setDisable(true);
 		buttonChild.setDisable(true);
 		System.out.println("You're a man!");
+		changeSceneToSymptomCheck();
 	}
 	
 	@FXML
@@ -72,5 +75,18 @@ public class CheckingController implements Initializable {
 		System.out.println("You're a woman!");
 	}
 	
-
+	private void changeSceneToSymptomCheck()
+	{
+		FadeTransition ft = new FadeTransition();
+		ft.setNode(backgroundPane);
+		ft.setDuration(Duration.millis(1000));
+		ft.setFromValue(1);
+		ft.setToValue(0);
+		ft.setOnFinished((ActionEvent eventt) -> {
+			System.out.println(1);
+			SceneController.changeScene("/controllers/SymptomCheckScene.fxml");
+			});
+		ft.play(); 
+	}
+	
 }

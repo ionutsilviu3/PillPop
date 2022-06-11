@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane fx:id="paneBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SymptomCheckController">
+   <bottom>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonCorrect" layoutX="91.0" layoutY="101.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="97.0" text="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="buttonWrong" layoutX="421.0" layoutY="101.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="97.0" text="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+            <Button fx:id="buttonNone" layoutX="219.0" layoutY="153.0" mnemonicParsing="false" onAction="#noneAnswer" text="I don't see anything">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <ImageView fx:id="imageEye" fitHeight="148.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../resources/images/5.png" />
+         </image>
+      </ImageView>
+   </center>
+   <top>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="labelQuestion" alignment="CENTER" prefHeight="64.0" prefWidth="600.0" text="What number do you see ?">
+               <font>
+                  <Font name="Century" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelDescription" layoutX="286.0" layoutY="92.0" />
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
