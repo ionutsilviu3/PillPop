@@ -3,6 +3,7 @@ package controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 
 public class SymptomCheckController implements Initializable {
 
@@ -21,6 +23,10 @@ public class SymptomCheckController implements Initializable {
 
 	@FXML
 	private Button buttonCorrect, buttonWrong, buttonNone;
+	
+	private int correctAnswersCounter = 0;
+	private int wrongAnswersCounter = 0;
+	private int noneAnswersCounter = 0;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -43,7 +49,23 @@ public class SymptomCheckController implements Initializable {
 	
 	@FXML
 	private void noneAnswer(ActionEvent event) {
+		if(noneAnswersCounter < 3) {
+		noneAnswersCounter++;
 		moveButtons();
+		}
+		else
+		{
+			FadeTransition ft = new FadeTransition();
+			ft.setNode(paneBackground);
+			ft.setDuration(Duration.millis(1000));
+			ft.setFromValue(1);
+			ft.setToValue(0);
+			ft.setOnFinished((ActionEvent eventt) -> {
+				System.out.println(1);
+				SceneController.changeScene("/controllers/DiseaseResultScene.fxml");
+				});
+			ft.play(); 
+		}
 	}
 	
 	private void changeImage(ImageView imgView,String adress)

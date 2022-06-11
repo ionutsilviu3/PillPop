@@ -14,6 +14,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
+import model.Patient;
+import service.PatientService;
 
 public class SignUpController implements Initializable {
 
@@ -42,6 +44,13 @@ public class SignUpController implements Initializable {
 			if(RegexVerification.validateEmail(emailField.getText()) == RegexVerification.state.VALID)
 					
 		{
+				PatientService patientService = new PatientService();
+				Patient patient = new Patient();
+				patient.setPatientName(usernameField.getText());
+				patient.setEmail(emailField.getText());
+				patient.setPassword(passwordField.getText());
+				patientService.addPatient(patient);
+				
 		FadeTransition ft = new FadeTransition();
 		  ft.setNode(paneBackground); ft.setDuration(Duration.millis(1000));
 		  ft.setFromValue(1); ft.setToValue(0); ft.setOnFinished((ActionEvent eventt)

@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import model.Patient;
@@ -23,10 +25,12 @@ public class LoginController implements Initializable {
 	private Button buttonLogin, buttonSignUp;
 	
 	@FXML
-	private BorderPane paneBackground;
+	private TextField fieldUsername;
+	@FXML
+	private PasswordField fieldPassword;
 	
 	@FXML
-	public ListView<Patient> patientListView;
+	private BorderPane paneBackground;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -40,32 +44,36 @@ public class LoginController implements Initializable {
 	private void login(ActionEvent event) {
 		
 		PatientService patientService = new PatientService();
-		List<Patient> allPatients = patientService.getAllPatients();
-
-		System.out.println(allPatients);
-		patientListView.setItems(FXCollections.observableArrayList(new ArrayList<Patient>(allPatients)));
+		
 		
 		try {
-			System.out.println(patientService.findPatient("test", "1234").toString());
+			if(patientService.findPatient(fieldUsername.getText(), fieldPassword.getText()) != null)
+			{
+			FadeTransition ft = new FadeTransition();
+			ft.setNode(paneBackground);
+			ft.setDuration(Duration.millis(1000));
+			ft.setFromValue(1);
+			ft.setToValue(0);
+			ft.setOnFinished((ActionEvent eventt) -> {
+				System.out.println(1);
+				SceneController.changeScene("/controllers/SymptomCheckScene.fxml");
+			});
+			ft.play();
+			System.out.println("Logging in..");
+			}
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		FadeTransition ft = new FadeTransition();
-		ft.setNode(paneBackground);
-		ft.setDuration(Duration.millis(1000));
-		ft.setFromValue(1);
-		ft.setToValue(0);
-		ft.setOnFinished((ActionEvent eventt) -> {
-			System.out.println(1);
-			SceneController.changeScene("/controllers/SymptomCheckScene.fxml");
-		});
-		ft.play();
-		System.out.println("Logging in..");
+		
+		
+		
 	}
 
 	@FXML
 	private void signUp(ActionEvent event) {
+		
 		FadeTransition ft = new FadeTransition();
 		ft.setNode(paneBackground);
 		ft.setDuration(Duration.millis(1000));

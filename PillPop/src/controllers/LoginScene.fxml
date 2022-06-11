@@ -20,8 +20,8 @@
                   <DropShadow blurType="GAUSSIAN" />
                </effect>
             </Button>
-            <PasswordField layoutX="46.0" layoutY="81.0" />
-            <TextField layoutX="46.0" layoutY="43.0" />
+            <PasswordField fx:id="fieldPassword" layoutX="46.0" layoutY="81.0" />
+            <TextField fx:id="fieldUsername" layoutX="46.0" layoutY="43.0" />
             <Label alignment="CENTER" layoutX="1.0" layoutY="14.0" prefHeight="17.0" prefWidth="238.0" text="Eye Tester">
                <font>
                   <Font name="Century" size="14.0" />

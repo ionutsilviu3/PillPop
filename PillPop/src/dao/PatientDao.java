@@ -30,7 +30,8 @@ public class PatientDao extends GenericDao<Patient> {
 			return null;
 		}
 	}
-
+	
+	
 	// for login
 	public List<Patient> find(String name) {
 		EntityManager em = getEntityManager();
@@ -39,7 +40,7 @@ public class PatientDao extends GenericDao<Patient> {
 
 		Root<Patient> c = q.from(Patient.class);
 		ParameterExpression<String> paramName = cb.parameter(String.class);
-		q.select(c).where(cb.equal(c.get("username"), paramName));
+		q.select(c).where(cb.equal(c.get("patientName"), paramName));
 		TypedQuery<Patient> query = em.createQuery(q);
 		query.setParameter(paramName, name);
 
