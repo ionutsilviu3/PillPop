@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class CheckingController implements Initializable {
+public class TypeCheckController implements Initializable {
 
 	@FXML
 	private Button buttonMan, buttonChild, buttonWoman;
@@ -23,7 +23,7 @@ public class CheckingController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
+		SceneController.fadeSceneIn(backgroundPane);
 	}
 
 	@FXML
@@ -33,7 +33,7 @@ public class CheckingController implements Initializable {
 		buttonWoman.setDisable(true);
 		buttonChild.setDisable(true);
 		System.out.println("You're a man!");
-		changeSceneToSymptomCheck();
+		SceneController.fadeSceneOut("/controllers/SymptomCheckScene.fxml", backgroundPane);
 	}
 	
 	@FXML
@@ -43,7 +43,8 @@ public class CheckingController implements Initializable {
 		buttonWoman.setDisable(true);
 		buttonMan.setDisable(true);
 		System.out.println("You're a child!");
-		changeSceneToSymptomCheck();
+		SceneController.fadeSceneOut("/controllers/SymptomCheckScene.fxml", backgroundPane);
+
 	}
 	
 	@FXML
@@ -53,7 +54,7 @@ public class CheckingController implements Initializable {
 		buttonMan.setDisable(true);
 		buttonChild.setDisable(true);
 		System.out.println("You're a woman!");
-		changeSceneToSymptomCheck();
+		SceneController.fadeSceneOut("/controllers/SymptomCheckScene.fxml", backgroundPane);
 	}
 	
 	private void changeSceneToSymptomCheck()

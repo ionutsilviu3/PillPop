@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,8 +36,7 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
-			
+		SceneController.fadeSceneIn(paneBackground);
 
 	}
 
@@ -49,16 +49,7 @@ public class LoginController implements Initializable {
 		try {
 			if(patientService.findPatient(fieldUsername.getText(), fieldPassword.getText()) != null)
 			{
-			FadeTransition ft = new FadeTransition();
-			ft.setNode(paneBackground);
-			ft.setDuration(Duration.millis(1000));
-			ft.setFromValue(1);
-			ft.setToValue(0);
-			ft.setOnFinished((ActionEvent eventt) -> {
-				System.out.println(1);
-				SceneController.changeScene("/controllers/SymptomCheckScene.fxml");
-			});
-			ft.play();
+			SceneController.fadeSceneOut("/controllers/SymptomCheckScene.fxml", paneBackground);
 			System.out.println("Logging in..");
 			}
 		} catch (Exception e) {
@@ -74,15 +65,6 @@ public class LoginController implements Initializable {
 	@FXML
 	private void signUp(ActionEvent event) {
 		
-		FadeTransition ft = new FadeTransition();
-		ft.setNode(paneBackground);
-		ft.setDuration(Duration.millis(1000));
-		ft.setFromValue(1);
-		ft.setToValue(0);
-		ft.setOnFinished((ActionEvent eventt) -> {
-			System.out.println(1);
-			SceneController.changeScene("/controllers/SignUpScene.fxml");
-		});
-		ft.play();
+		SceneController.fadeSceneOut("/controllers/SignUpScene.fxml", paneBackground);
 	}
 }

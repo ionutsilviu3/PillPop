@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import application.RegexVerification;
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,14 +26,21 @@ public class SignUpController implements Initializable {
 	private TextField usernameField, emailField;
 	@FXML
 	private PasswordField passwordField;
-	@FXML Label usernameLabel, emailLabel, passwordLabel;
+	@FXML
+	Label usernameLabel, emailLabel, passwordLabel;
 	@FXML
 	private BorderPane paneBackground;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		SceneController.fadeSceneIn(paneBackground);
+	}
 
+
+	@FXML
+	private void goBackToLogin(ActionEvent event) {
+		SceneController.fadeSceneOut("/controllers/LoginScene.fxml", paneBackground);
 	}
 
 	@FXML
@@ -40,27 +48,21 @@ public class SignUpController implements Initializable {
 		System.out.println(RegexVerification.validateUsername(usernameField.getText()));
 		System.out.println(RegexVerification.validateEmail(emailField.getText()));
 		System.out.println(RegexVerification.validatePassword(passwordField.getText()));
-		if(RegexVerification.validateUsername(usernameField.getText()) == RegexVerification.state.VALID)
-			if(RegexVerification.validateEmail(emailField.getText()) == RegexVerification.state.VALID)
-					
-		{
+		if (RegexVerification.validateUsername(usernameField.getText()) == RegexVerification.state.VALID)
+			if (RegexVerification.validateEmail(emailField.getText()) == RegexVerification.state.VALID)
+
+			{
 				PatientService patientService = new PatientService();
 				Patient patient = new Patient();
 				patient.setPatientName(usernameField.getText());
 				patient.setEmail(emailField.getText());
 				patient.setPassword(passwordField.getText());
 				patientService.addPatient(patient);
-				
-		FadeTransition ft = new FadeTransition();
-		  ft.setNode(paneBackground); ft.setDuration(Duration.millis(1000));
-		  ft.setFromValue(1); ft.setToValue(0); ft.setOnFinished((ActionEvent eventt)
-		  -> { System.out.println(1);
-		  SceneController.changeScene("/controllers/CheckingScene.fxml"); });
-		  ft.play();
-		  System.out.println("Signed up!");
-		}
-		
+
+				SceneController.fadeSceneOut("/controllers/TypeCheckScene.fxml", paneBackground);
+				System.out.println("Signed up!");
+			}
+
 	}
 
-	
 }
