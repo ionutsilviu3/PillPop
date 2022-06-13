@@ -2,8 +2,10 @@ package service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
+import model.Disease;
 import model.Patient;
 import dao.PatientDao;
 
@@ -25,12 +27,23 @@ public class PatientService {
 	public void updatePatient(Patient updatedPatient) {
 		patientDao.update(updatedPatient);
 	}
-
+	public void insertDisease(Disease disease) {
+		patientDao.updateDisease(disease);
+	}
 	public List<Patient> getAllPatients() {
 		return patientDao.findAll();
 	}
 
+	public Patient findPatientID(String id) throws Exception {
+		List<Patient> patients = patientDao.findPatientID(id);
+		if (patients.size() == 0) {
+			throw new Exception("User not found!");
+		}
+		Patient u = patients.get(0);
 
+		return u;
+	}
+	
 	public Patient findPatient(String patient, String pass) throws Exception {
 		List<Patient> patients = patientDao.find(patient);
 		if (patients.size() == 0) {

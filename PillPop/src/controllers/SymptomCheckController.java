@@ -13,8 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import model.Disease;
 import model.Ishiharaplate;
+import model.Patient;
+import service.DiseaseService;
 import service.IshiharaPlateService;
+import service.PatientService;
 
 public class SymptomCheckController implements Initializable {
 
@@ -34,28 +38,47 @@ public class SymptomCheckController implements Initializable {
 
 	private Random rand = new Random();
 
+	private PatientService patientService;
+	private Patient localPatient;
+
 	private IshiharaPlateService ishiharaPlateService;
-	List<Ishiharaplate> allishiharaPlates;
+	private List<Ishiharaplate> allishiharaPlates;
+
+	private DiseaseService diseaseService;
+	private List<Disease> allDiseases;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
 		SceneController.fadeSceneIn(paneBackground);
-
+		localPatient = null;
+		patientService = new PatientService();
 		ishiharaPlateService = new IshiharaPlateService();
 		allishiharaPlates = ishiharaPlateService.getAllIshiharaPlates();
 		Collections.shuffle(allishiharaPlates);
 		for (Ishiharaplate plate : allishiharaPlates) {
 			System.out.println(plate.getCorrectAns() + " - " + plate.getWrongAns());
 		}
+		diseaseService = new DiseaseService();
+		allDiseases = diseaseService.getAllDiseases();
+		for (Disease disease : allDiseases)
+			System.out.println(
+					disease.getDiseaseID() + "\n" + disease.getDiseaseName() + "\n" + disease.getDescription());
+		try {
+			System.out.println(diseaseService.findDisease("Mild colorblindness"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		changePlate();
 
 	}
 
 	@FXML
 	private void correctAnswer(ActionEvent event) {
 		correctAnswersCounter++;
-		System.out.println("Correct: "+ correctAnswersCounter);
+		System.out.println("Correct: " + correctAnswersCounter);
 		changePlate();
 	}
 
@@ -63,13 +86,29 @@ public class SymptomCheckController implements Initializable {
 	private void wrongAnswer(ActionEvent event) {
 		if (wrongAnswersCounter < 7 && correctAnswersCounter >= 0) {
 			wrongAnswersCounter++;
-			System.out.println("Wrong: "+ wrongAnswersCounter);
+			System.out.println("Wrong: " + wrongAnswersCounter);
 			changePlate();
-		} else if (wrongAnswersCounter > 7 && correctAnswersCounter > 0) {
+		} else if (wrongAnswersCounter >= 7 && correctAnswersCounter > 0) {
+
+			try {
+				patientService.insertDisease(diseaseService.findDisease("Mild colorblindness"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml", paneBackground);
 			System.out.println("u kinda colorblind bro");
-		} else if (wrongAnswersCounter > 7 && correctAnswersCounter < 0) {
-			SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml", paneBackground);
+		} else if (wrongAnswersCounter >= 7 && correctAnswersCounter <= 0) {
+			try {
+				localPatient = patientService.findPatientID(((Integer) LoginController.loggedID).toString());
+				if (localPatient != null)
+					localPatient.setDisease(diseaseService.findDisease("Colorblind"));
+				patientService.updatePatient(localPatient);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml",
+			// paneBackground);
 			System.out.println("u colorblind colorblind");
 		}
 
@@ -79,10 +118,16 @@ public class SymptomCheckController implements Initializable {
 	private void noneAnswer(ActionEvent event) {
 		if (noneAnswersCounter < 3) {
 			noneAnswersCounter++;
-			System.out.println("None: "+ noneAnswersCounter);
+			System.out.println("None: " + noneAnswersCounter);
 			changePlate();
-			}
-		 else {
+		} else {
+			
+				try {
+					patientService.insertDisease(diseaseService.findDisease("Colorblind"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			
 			SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml", paneBackground);
 			System.out.println("u colorblind colorblind");
 		}
@@ -91,10 +136,10 @@ public class SymptomCheckController implements Initializable {
 	private void changePlate() {
 
 		if (answeredCounter < allishiharaPlates.size()) {
-			
+
 			int correct = allishiharaPlates.get(answeredCounter).getCorrectAns();
 			int wrong = allishiharaPlates.get(answeredCounter).getWrongAns();
-			Image tempImg = new Image("/resources/images/"+correct + "_" + wrong + ".png");
+			Image tempImg = new Image("/resources/images/" + correct + "_" + wrong + ".png");
 			imageIshihara.setImage(tempImg);
 
 			buttonCorrect.setText(((Integer) correct).toString());
@@ -103,10 +148,21 @@ public class SymptomCheckController implements Initializable {
 			int random = rand.nextInt(allishiharaPlates.size());
 			if (random % 2 == 0)
 				moveButtons();
-			
+
 			answeredCounter++;
-		} else
+		} else {
+
+			if (correctAnswersCounter > 4)
+				try {
+					localPatient = patientService.findPatientID(((Integer) LoginController.loggedID).toString());
+					if (localPatient != null)
+						localPatient.setDisease(diseaseService.findDisease("None"));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
 			SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml", paneBackground);
+		}
 	}
 
 	private void moveButtons() {

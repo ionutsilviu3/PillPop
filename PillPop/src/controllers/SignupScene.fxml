@@ -45,6 +45,21 @@
             <Label fx:id="usernameLabel" alignment="CENTER" layoutY="6.0" prefHeight="17.0" prefWidth="239.0" text="Must contain 6-20 characters, only letters" textAlignment="CENTER" wrapText="true" />
             <Label fx:id="emailLabel" alignment="CENTER" layoutY="66.0" prefHeight="17.0" prefWidth="239.0" text="Can't contain special symbols" textAlignment="CENTER" wrapText="true" />
             <Label fx:id="passwordLabel" alignment="CENTER" layoutX="-1.0" layoutY="116.0" prefHeight="40.0" prefWidth="239.0" text="Must contain 8-20 characters, containing  minimum a number, no special symbols" textAlignment="CENTER" wrapText="true" />
+            <ImageView fx:id="imgViewUserExclamation" fitHeight="32.0" fitWidth="32.0" layoutX="193.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/exclamationIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgViewEmailExclamation" fitHeight="32.0" fitWidth="32.0" layoutX="193.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/exclamationIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgViewPasswordExclamation" fitHeight="32.0" fitWidth="32.0" layoutX="193.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/exclamationIcon.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

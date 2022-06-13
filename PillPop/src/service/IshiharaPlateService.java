@@ -5,9 +5,7 @@ import java.util.List;
 import javax.persistence.Persistence;
 
 import dao.IshiharaPlateDao;
-import dao.PatientDao;
 import model.Ishiharaplate;
-import model.Patient;
 
 public class IshiharaPlateService {
 	private IshiharaPlateDao ishiharaPlateDao;

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="paneBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DiseaseResultController">
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="-3.0" layoutY="57.0" prefHeight="52.0" prefWidth="600.0" text="Myopia" textAlignment="CENTER" textFill="#008deb">
+            <Label fx:id="labelName" alignment="CENTER" layoutX="-3.0" layoutY="57.0" prefHeight="52.0" prefWidth="600.0" textAlignment="CENTER" textFill="#008deb">
                <font>
                   <Font name="Century" size="24.0" />
                </font>
@@ -24,11 +25,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea prefHeight="200.0" prefWidth="200.0" text="You are nearsighted. nooooooooob" wrapText="true">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </TextArea>
+            <TextArea fx:id="descriptionArea" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </AnchorPane>
    </center>
@@ -38,9 +35,12 @@
    <bottom>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="507.0" layoutY="143.0" mnemonicParsing="false" text="Try again" />
-            <Label alignment="CENTER_RIGHT" layoutX="-4.0" layoutY="117.0" prefHeight="17.0" prefWidth="600.0" text="Wasn't this accurate ?" textAlignment="CENTER" />
-            <Button layoutX="272.0" layoutY="143.0" mnemonicParsing="false" text="Finish!" />
+            <Button fx:id="tryAgainButton" layoutX="507.0" layoutY="143.0" mnemonicParsing="false" onAction="#tryAgain" text="Try again" textFill="#008deb" />
+            <Button fx:id="finishButton" layoutX="272.0" layoutY="143.0" mnemonicParsing="false" onAction="#finish" style="-fx-background-color: #0583F2;" text="Finish!">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Button fx:id="tryAgainButton" layoutX="469.0" layoutY="118.0" mnemonicParsing="false" onAction="#tryAgain" text="Wasn't this accurate ?" />
          </children>
       </AnchorPane>
    </bottom>
