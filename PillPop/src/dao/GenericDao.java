@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaQuery;
 
+import application.EntityManagerException;
+
 public abstract class GenericDao<T> {
 	private Class<T> entityClass;
 
@@ -20,7 +22,7 @@ public abstract class GenericDao<T> {
 			em.getTransaction().begin();
 			em.persist(entity);
 			em.getTransaction().commit();
-		} catch (RuntimeException e) {
+		} catch (EntityManagerException e) {
 			em.getTransaction().rollback();
 
 		} finally {
@@ -34,7 +36,7 @@ public abstract class GenericDao<T> {
 			em.getTransaction().begin();
 			em.merge(entity);
 			em.getTransaction().commit();
-		} catch (RuntimeException e) {
+		} catch (EntityManagerException e) {
 			em.getTransaction().rollback();
 
 		} finally {
@@ -48,7 +50,7 @@ public abstract class GenericDao<T> {
 			em.getTransaction().begin();
 			em.remove((T) em.find(this.entityClass, entityId));
 			em.getTransaction().commit();
-		} catch (RuntimeException e) {
+		} catch (EntityManagerException e) {
 			em.getTransaction().rollback();
 
 		} finally {
@@ -61,7 +63,7 @@ public abstract class GenericDao<T> {
 		try {
 			T ret = (T) em.find(this.entityClass, id);
 			return ret;
-		} catch (RuntimeException e) {
+		} catch (EntityManagerException e) {
 			em.getTransaction().rollback();
 
 		} finally {
@@ -78,7 +80,7 @@ public abstract class GenericDao<T> {
 			@SuppressWarnings("unchecked")
 			List<T> returnValues = (List<T>) em.createQuery(cq).getResultList();
 			return returnValues;
-		} catch (RuntimeException e) {
+		} catch (EntityManagerException e) {
 			em.getTransaction().rollback();
 
 		} finally {

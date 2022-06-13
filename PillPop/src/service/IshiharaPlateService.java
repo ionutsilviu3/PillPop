@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
+import application.IdException;
 import dao.IshiharaPlateDao;
 import model.Ishiharaplate;
 
@@ -31,11 +32,11 @@ public class IshiharaPlateService {
 	}
 
 
-	public Ishiharaplate findIshiharaPlate(int ishiharaPlate) throws Exception {
+	public Ishiharaplate findIshiharaPlate(int ishiharaPlate) throws IdException {
 		String id = ((Integer)ishiharaPlate).toString();
 		List<Ishiharaplate> ishiharaPlates = ishiharaPlateDao.find(id);
 		if (ishiharaPlates.size() == 0) {
-			throw new Exception("Ishihara Plate not found!");
+			throw new IdException("Ishihara Plate not found!");
 		}
 		Ishiharaplate u = ishiharaPlates.get(0);
 

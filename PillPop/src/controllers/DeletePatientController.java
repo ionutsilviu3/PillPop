@@ -38,8 +38,8 @@ public class DeletePatientController implements Initializable {
 	@FXML
 	private void goBackToLogin(ActionEvent event) {
 
-		System.out.println("back to login");
-		//SceneController.fadeSceneOut("/controllers/SignupScene.fxml", paneBackground);
+		//System.out.println("back to login");
+		SceneController.fadeSceneOut("/controllers/LoginScene.fxml", paneBackground);
 
 	}
 

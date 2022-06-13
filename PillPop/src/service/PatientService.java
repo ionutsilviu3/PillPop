@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
+import application.IdException;
 import dao.PatientDao;
 import model.Disease;
 import model.Patient;
@@ -39,10 +40,10 @@ public class PatientService {
 		return patientDao.findAll();
 	}
 
-	public Patient findPatientID(String id) throws Exception {
+	public Patient findPatientID(String id) throws IdException {
 		List<Patient> patients = patientDao.findPatientID(id);
 		if (patients.size() == 0) {
-			throw new Exception("User not found!");
+			throw new IdException("User not found!");
 		}
 		Patient u = patients.get(0);
 

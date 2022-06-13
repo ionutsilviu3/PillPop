@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Persistence;
 
+import application.IdException;
 import dao.DiseaseDao;
 import model.Disease;
 
@@ -31,11 +32,11 @@ public class DiseaseService {
 	}
 
 
-	public Disease findDisease(String disease) throws Exception {
+	public Disease findDisease(String disease) throws IdException {
 		String name = disease;
 		List<Disease> Diseases = diseaseDao.find(name);
 		if (Diseases.size() == 0) {
-			throw new Exception("Disease not found!");
+			throw new IdException("Disease not found!");
 		}
 		Disease u = Diseases.get(0);
 

@@ -54,7 +54,8 @@ public class LoginController implements Initializable {
 				System.out.println("Logging in..");
 
 			}
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			imgViewExclamation.setVisible(true);
 			e.printStackTrace();
 		}

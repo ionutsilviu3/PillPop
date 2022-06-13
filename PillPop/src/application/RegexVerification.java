@@ -12,6 +12,7 @@ public class RegexVerification {
 	
 	public static state validateUsername(String username)
 	{
+		
 		if(username == null || username.isEmpty())
 		{
 			return state.EMPTY;
