@@ -2,12 +2,11 @@ package service;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
+import dao.PatientDao;
 import model.Disease;
 import model.Patient;
-import dao.PatientDao;
 
 public class PatientService {
 	private PatientDao patientDao;
@@ -27,9 +26,15 @@ public class PatientService {
 	public void updatePatient(Patient updatedPatient) {
 		patientDao.update(updatedPatient);
 	}
-	public void insertDisease(Disease disease) {
-		patientDao.updateDisease(disease);
+
+	public void updateType(String type, int id) {
+		patientDao.updateType(type, id);
 	}
+
+	public void updateDisease(Disease disease, int id) {
+		patientDao.updateDisease(disease, id);
+	}
+
 	public List<Patient> getAllPatients() {
 		return patientDao.findAll();
 	}
@@ -43,7 +48,7 @@ public class PatientService {
 
 		return u;
 	}
-	
+
 	public Patient findPatient(String patient, String pass) throws Exception {
 		List<Patient> patients = patientDao.find(patient);
 		if (patients.size() == 0) {
@@ -55,5 +60,10 @@ public class PatientService {
 			throw new Exception("Password does not match");
 		}
 		return u;
+	}
+
+	public void deletePatient(Patient p) {
+		patientDao.deletePatient(p.getPatientID());
+
 	}
 }

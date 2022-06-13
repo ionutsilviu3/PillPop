@@ -30,7 +30,6 @@ public class SignUpController implements Initializable {
 	Label usernameLabel, emailLabel, passwordLabel;
 	@FXML
 	private BorderPane paneBackground;
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -63,7 +62,8 @@ public class SignUpController implements Initializable {
 					patient.setEmail(emailField.getText());
 					patient.setPassword(passwordField.getText());
 					patientService.addPatient(patient);
-
+					LoginController.loggedID = patientService.getAllPatients().size();
+					System.out.println("LLLLLLLLLLLLLLLLLLLLLL: " + LoginController.loggedID);
 					SceneController.fadeSceneOut("/controllers/TypeCheckScene.fxml", paneBackground);
 					System.out.println("Signed up!");
 				} 

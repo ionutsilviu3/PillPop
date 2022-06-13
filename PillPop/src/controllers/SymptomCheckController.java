@@ -86,30 +86,25 @@ public class SymptomCheckController implements Initializable {
 	private void wrongAnswer(ActionEvent event) {
 		if (wrongAnswersCounter < 7 && correctAnswersCounter >= 0) {
 			wrongAnswersCounter++;
-			System.out.println("Wrong: " + wrongAnswersCounter);
 			changePlate();
 		} else if (wrongAnswersCounter >= 7 && correctAnswersCounter > 0) {
 
 			try {
-				patientService.insertDisease(diseaseService.findDisease("Mild colorblindness"));
+				patientService.updateDisease(diseaseService.findDisease("Mild Colorblindness"),
+						LoginController.loggedID);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 			SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml", paneBackground);
-			System.out.println("u kinda colorblind bro");
-		} else if (wrongAnswersCounter >= 7 && correctAnswersCounter <= 0) {
+		}
+
+		else if (wrongAnswersCounter >= 7 && correctAnswersCounter <= 0) {
 			try {
-				localPatient = patientService.findPatientID(((Integer) LoginController.loggedID).toString());
-				if (localPatient != null)
-					localPatient.setDisease(diseaseService.findDisease("Colorblind"));
-				patientService.updatePatient(localPatient);
+				patientService.updateDisease(diseaseService.findDisease("Colorblind"), LoginController.loggedID);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml",
-			// paneBackground);
-			System.out.println("u colorblind colorblind");
 		}
 
 	}
@@ -121,15 +116,14 @@ public class SymptomCheckController implements Initializable {
 			System.out.println("None: " + noneAnswersCounter);
 			changePlate();
 		} else {
-			
-				try {
-					patientService.insertDisease(diseaseService.findDisease("Colorblind"));
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			
+
+			try {
+				patientService.updateDisease(diseaseService.findDisease("Colorblind"), LoginController.loggedID);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 			SceneController.fadeSceneOut("/controllers/DiseaseResultScene.fxml", paneBackground);
-			System.out.println("u colorblind colorblind");
 		}
 	}
 
@@ -154,9 +148,8 @@ public class SymptomCheckController implements Initializable {
 
 			if (correctAnswersCounter > 4)
 				try {
-					localPatient = patientService.findPatientID(((Integer) LoginController.loggedID).toString());
-					if (localPatient != null)
-						localPatient.setDisease(diseaseService.findDisease("None"));
+					patientService.updateDisease(diseaseService.findDisease("None"),
+							LoginController.loggedID);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

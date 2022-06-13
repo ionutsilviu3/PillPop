@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<BorderPane fx:id="paneBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SymptomCheckController">
+<BorderPane fx:id="paneBackground" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SymptomCheckController">
    <bottom>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonCorrect" layoutX="91.0" layoutY="101.0" mnemonicParsing="false" onAction="#correctAnswer" prefHeight="52.0" prefWidth="97.0" text="5">
+            <Button fx:id="buttonCorrect" layoutX="95.0" layoutY="101.0" mnemonicParsing="false" onAction="#correctAnswer" prefHeight="52.0" prefWidth="97.0" text="5">
                <font>
                   <Font size="20.0" />
                </font>
@@ -20,7 +20,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="buttonWrong" layoutX="421.0" layoutY="101.0" mnemonicParsing="false" onAction="#wrongAnswer" prefHeight="52.0" prefWidth="97.0" text="2">
+            <Button fx:id="buttonWrong" layoutX="448.0" layoutY="101.0" mnemonicParsing="false" onAction="#wrongAnswer" prefHeight="52.0" prefWidth="97.0" text="2">
                <font>
                   <Font size="20.0" />
                </font>
@@ -28,7 +28,7 @@
                   <DropShadow />
                </effect>
             </Button>
-            <Button fx:id="buttonNone" layoutX="219.0" layoutY="153.0" mnemonicParsing="false" onAction="#noneAnswer" text="I don't see anything">
+            <Button fx:id="buttonNone" layoutX="239.0" layoutY="153.0" mnemonicParsing="false" onAction="#noneAnswer" text="I don't see anything">
                <font>
                   <Font size="16.0" />
                </font>
@@ -46,7 +46,7 @@
    <top>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelQuestion" alignment="CENTER" prefHeight="64.0" prefWidth="600.0" text="What number do you see ?">
+            <Label fx:id="labelQuestion" alignment="CENTER" prefHeight="64.0" prefWidth="640.0" text="What number do you see ?">
                <font>
                   <Font name="Century" size="24.0" />
                </font>

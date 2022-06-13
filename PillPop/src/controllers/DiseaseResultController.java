@@ -31,7 +31,8 @@ public class DiseaseResultController implements Initializable {
 		patientService = new PatientService();
 		SceneController.fadeSceneIn(paneBackground);
 		try {
-			labelName.setText(patientService.findPatientID("1").getPatientName());
+			labelName.setText(patientService.findPatientID(((Integer)LoginController.loggedID).toString()).getDisease().getDiseaseName());
+			descriptionArea.setText(patientService.findPatientID(((Integer)LoginController.loggedID).toString()).getDisease().getDescription());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -44,9 +45,8 @@ public class DiseaseResultController implements Initializable {
 	}
 	
 	@FXML
-	private void tryAgain(ActionEvent event) {
-		
-		SceneController.fadeSceneOut("/controllers/SymptomCheck.fxml", paneBackground);
+	private void goBackToLogin(ActionEvent event) {
+		SceneController.fadeSceneOut("/controllers/SymptomCheckScene.fxml", paneBackground);
 
 	}
 	

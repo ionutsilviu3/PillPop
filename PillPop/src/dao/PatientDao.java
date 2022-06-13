@@ -32,12 +32,30 @@ public class PatientDao extends GenericDao<Patient> {
 		}
 	}
 
-	public void updateDisease(Disease disease) {
+	public void updateDisease(Disease disease, int id) {
 		EntityManager em = getEntityManager();
-		Patient patient = em.find(Patient.class, 1);
+		Patient patient = em.find(Patient.class, id);
+		em.getTransaction().begin();
+		patient.setDisease(disease);
+	    em.getTransaction().commit();
+	    em.close();
+	}
+	
+	public void deletePatient(int id)
+	{
+		EntityManager em = getEntityManager();
+		Patient patient = em.find(Patient.class, id);
+		em.getTransaction().begin();
+		em.remove(patient);
+	    em.getTransaction().commit();
+	    em.close();
+	}
+	
+	public void updateType(String type,int id) {
+		EntityManager em = getEntityManager();
+		Patient patient = em.find(Patient.class, id);
 		  em.getTransaction().begin();
-		  patient.setType("f");
-		  //disease.addPatient(patient);
+		  patient.setType(type);
 		  em.getTransaction().commit();
 		  em.close();
 	}
